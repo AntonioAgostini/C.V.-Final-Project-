@@ -1,3 +1,5 @@
+# ***Project 2: Joint Detection of AI-Generated Images and Post-Processing Alterations in Real-World Scenarios***
+
 ***Abstract***: AI-generated image detectors are typically evaluated under idealized conditions, where images
 are clean, uncompressed, and sourced directly from generative models. In practice, however, images
 circulating on social media have almost always undergone some form of post-processing each of which introduces
