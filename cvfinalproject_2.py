@@ -36,9 +36,9 @@ from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classifi
 
 from google.colab import drive
 
-#Check Colab runtime
-print(torch.cuda.is_available())
-print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")
+!pip install -q tqdm requests
+import requests
+from tqdm.auto import tqdm
 
 """#**Globals**"""
 
@@ -107,6 +107,26 @@ def list_files_recursively(root_path, max_items=100):
                 print("\n[Output truncated]")
                 return
 
+def download_with_progress(url, output_path, chunk_size=1024*1024):
+    response = requests.get(url, stream=True)
+    response.raise_for_status()
+
+    total_size = int(response.headers.get("content-length", 0))
+
+    with open(output_path, "wb") as f, tqdm(
+        desc=output_path.name,
+        total=total_size,
+        unit="B",
+        unit_scale=True,
+        unit_divisor=1024,
+    ) as bar:
+        for chunk in response.iter_content(chunk_size=chunk_size):
+            if chunk:
+                f.write(chunk)
+                bar.update(len(chunk))
+
+    print(f"Download completato: {output_path}")
+
 """#**Data**
 
 ### Download and Extract RRDataset
@@ -129,6 +149,13 @@ print("File trovati nel record Zenodo:")
 for i, f in enumerate(files_in_record):
     print(f"{i}: {f['key']}  |  {round(f.get('size', 0)/1e9, 2)} GB")
 
+print("\nDettaglio completo dei file:\n")
+for f in files_in_record:
+    print("Nome file:", f["key"])
+    print("Dimensione (GB):", round(f.get("size", 0)/1e9, 2))
+    print("Link diretto:", f["links"]["self"])
+    print("-" * 60)
+
 """##Download Dataset"""
 
 target_file = files_in_record[0]   # poi eventualmente cambiamo
@@ -139,8 +166,7 @@ dest_path = DOWNLOAD_DIR / target_name
 
 if not dest_path.exists():
     print("Scaricamento:", target_name)
-    urllib.request.urlretrieve(target_url, dest_path)
-    print("Download completato.")
+    download_with_progress(target_url, dest_path)
 else:
     print("File già presente:", dest_path)
 
@@ -162,6 +188,11 @@ elif str(archive_path).endswith(".tar"):
     print("Archivio TAR estratto.")
 else:
     print("Formato non riconosciuto:", archive_path.name)
+
+print("Prime cartelle trovate:")
+for p in sorted(EXTRACT_DIR.rglob("*")):
+    if p.is_dir():
+        print(p)
 
 """##Dataset structure inspection"""
 
@@ -190,5 +221,5 @@ for p in all_images[:20]:
 
 
 
-"""#**Test**"""
+"""#**Evaluation/Test**"""
 
