@@ -1,4 +1,4 @@
-**Abstract**: AI-generated image detectors are typically evaluated under idealized conditions, where images
+***Abstract***: AI-generated image detectors are typically evaluated under idealized conditions, where images
 are clean, uncompressed, and sourced directly from generative models. In practice, however, images
 circulating on social media have almost always undergone some form of post-processing each of which introduces
 a distinct degradation signature that can disrupt detector performance. This project proposes a
@@ -8,18 +8,18 @@ further analytical objective investigates whether AI-generated and real images r
 same post-processing operations, potentially revealing exploitable cross-class traces that can inform more
 robust detection strategies.
 
-**Dataset**: RRDataset: a real-world robustness benchmark containing real photographs and AI-generated images
+***Dataset***: RRDataset: a real-world robustness benchmark containing real photographs and AI-generated images
 with three splits: original, internet-transmitted, and re-digitized. Students may select a subset of the dataset,
 comprehensive of all three classes, according to their available hardware.
 
-**Task**: Given a single input image, a unified deep learning model must produce two predictions simultaneously: 
+***Task***: Given a single input image, a unified deep learning model must produce two predictions simultaneously: 
 (1) a binary real/fake label indicating whether the image is a genuine photograph or AI-generated, and (2) a multi-class
 transformation label indicating which post-processing alteration has been applied (original, internet-transmitted, or
 re-digitalized). Both predictions are produced by a shared backbone, trained jointly with a combined loss function.
 The project is structured in three phases: baseline unimodal training, joint multi-task training, and an analytical
 phase investigating cross-class transformation traces.
 
-**Main objectives**:
+***Main objectives***:
 * Data preparation and subset selection: Download and preprocess the RRDataset, constructing a balanced
 split across real/fake classes and transformation categories. Students should document their hardware-driven
 subset choice and verify class balance before training.
@@ -36,7 +36,7 @@ real and AI-generated images.
 accuracy and transformation classification accuracy, identifying whether the two tasks compete for representational
 capacity or complement each other.
 
-**References**:
+***References***:
 * Li, Chunxiao, et al. ”Bridging the Gap Between Ideal and Real-world Evaluation: Benchmarking AI-Generated
 Image Detection in Challenging Scenarios.” Proceedings of the IEEE/CVF International Conference on Computer
 Vision. 2025. 
