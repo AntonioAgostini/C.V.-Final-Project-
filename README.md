@@ -37,9 +37,8 @@ accuracy and transformation classification accuracy, identifying whether the two
 capacity or complement each other.
 
 **References**:
-• Li, Chunxiao, et al. ”Bridging the Gap Between Ideal and Real-world Evaluation: Benchmarking AI-Generated
+* Li, Chunxiao, et al. ”Bridging the Gap Between Ideal and Real-world Evaluation: Benchmarking AI-Generated
 Image Detection in Challenging Scenarios.” Proceedings of the IEEE/CVF International Conference on Computer
-Vision. 2025.
-
-• Shao, Rui, Tianxing Wu, and Ziwei Liu. ”Detecting and grounding multi-modal media manipulation.” Proceedings
+Vision. 2025. 
+* Shao, Rui, Tianxing Wu, and Ziwei Liu. ”Detecting and grounding multi-modal media manipulation.” Proceedings
 of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2023.
