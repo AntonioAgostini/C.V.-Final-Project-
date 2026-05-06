@@ -11,19 +11,176 @@ Original file is located at
 #**Imports**
 """
 
-import
+import os
+import json
+import random
+import zipfile
+import tarfile
+from pathlib import Path
+from collections import defaultdict
+
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import Dataset, DataLoader
+
+import torchvision
+import torchvision.transforms as transforms
+from torchvision import models
+
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
+
+from google.colab import drive
+
+#Check Colab runtime
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")
 
 """#**Globals**"""
 
+SEED = 42
+random.seed(SEED)
+np.random.seed(SEED)
+torch.manual_seed(SEED)
+torch.cuda.manual_seed_all(SEED)
 
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Device:", DEVICE)
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+
+ROOT_DIR = Path("/content")
+DATA_DIR = ROOT_DIR / "RRDataset"
+DOWNLOAD_DIR = ROOT_DIR / "downloads"
+EXTRACT_DIR = ROOT_DIR / "RRDataset_extracted"
+CHECKPOINT_DIR = ROOT_DIR / "checkpoints"
+
+DOWNLOAD_DIR.mkdir(exist_ok=True)
+EXTRACT_DIR.mkdir(exist_ok=True)
+CHECKPOINT_DIR.mkdir(exist_ok=True)
+
+IMG_SIZE = 224
+BATCH_SIZE = 16
+NUM_EPOCHS = 10
+LEARNING_RATE = 1e-4
+
+RF_LABELS = {"real": 0, "fake": 1}
+TRANS_LABELS = {
+    "original": 0,
+    "internet_transmitted": 1,
+    "re_digitized": 2
+}
 
 """# **Utils**"""
 
+def set_seed(seed=42):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
 
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-"""#**Data**"""
+def show_image(image_path):
+    img = Image.open(image_path).convert("RGB")
+    plt.figure(figsize=(4,4))
+    plt.imshow(img)
+    plt.axis("off")
+    plt.show()
 
+def list_files_recursively(root_path, max_items=100):
+    count = 0
+    for root, dirs, files in os.walk(root_path):
+        level = root.replace(str(root_path), "").count(os.sep)
+        indent = " " * 2 * level
+        print(f"{indent}{os.path.basename(root)}/")
+        subindent = " " * 2 * (level + 1)
+        for f in files:
+            print(f"{subindent}{f}")
+            count += 1
+            if count >= max_items:
+                print("\n[Output truncated]")
+                return
 
+"""#**Data**
+
+### Download and Extract RRDataset
+This cells downloads the RRDataset from Zenodo and extracts it into the local environment.
+
+##Real file recovery from Zenodo
+"""
+
+import urllib.request
+
+ZENODO_RECORD = "14963880"
+ZENODO_API = f"https://zenodo.org/api/records/{ZENODO_RECORD}"
+
+with urllib.request.urlopen(ZENODO_API) as response:
+    record_meta = json.loads(response.read().decode())
+
+files_in_record = record_meta.get("files", [])
+
+print("File trovati nel record Zenodo:")
+for i, f in enumerate(files_in_record):
+    print(f"{i}: {f['key']}  |  {round(f.get('size', 0)/1e9, 2)} GB")
+
+"""##Download Dataset"""
+
+target_file = files_in_record[0]   # poi eventualmente cambiamo
+target_url = target_file["links"]["self"]
+target_name = target_file["key"]
+
+dest_path = DOWNLOAD_DIR / target_name
+
+if not dest_path.exists():
+    print("Scaricamento:", target_name)
+    urllib.request.urlretrieve(target_url, dest_path)
+    print("Download completato.")
+else:
+    print("File già presente:", dest_path)
+
+"""##Archive extraction"""
+
+archive_path = dest_path
+
+if str(archive_path).endswith(".zip"):
+    with zipfile.ZipFile(archive_path, "r") as zf:
+        zf.extractall(EXTRACT_DIR)
+    print("Archivio ZIP estratto.")
+elif str(archive_path).endswith(".tar.gz"):
+    with tarfile.open(archive_path, "r:gz") as tf:
+        tf.extractall(EXTRACT_DIR)
+    print("Archivio TAR.GZ estratto.")
+elif str(archive_path).endswith(".tar"):
+    with tarfile.open(archive_path, "r:") as tf:
+        tf.extractall(EXTRACT_DIR)
+    print("Archivio TAR estratto.")
+else:
+    print("Formato non riconosciuto:", archive_path.name)
+
+"""##Dataset structure inspection"""
+
+print("Struttura del dataset estratto:\n")
+list_files_recursively(EXTRACT_DIR, max_items=200)
+
+"""##Image count"""
+
+IMG_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
+
+all_images = []
+for p in EXTRACT_DIR.rglob("*"):
+    if p.suffix.lower() in IMG_EXTENSIONS:
+        all_images.append(p)
+
+print("Numero totale immagini trovate:", len(all_images))
+
+for p in all_images[:20]:
+    print(p)
 
 """#**Network**"""
 
