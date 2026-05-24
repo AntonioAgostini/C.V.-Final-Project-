@@ -1,6 +1,6 @@
-**Group members:**
 
-| &nbsp; | &nbsp; |
+
+| Group members | matrix |
 |---|---|
 | Antonio Agostini | 1995653 |
 | Giorgia Saolini | ... |
