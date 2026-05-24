@@ -1,6 +1,7 @@
 **Group members:**
 
-
+| &nbsp; | &nbsp; |
+|---|---|
 | Antonio Agostini | 1995653 |
 | Giorgia Saolini | ... |
 
