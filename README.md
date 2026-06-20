@@ -87,17 +87,6 @@ This allows us to understand which post-processing operations are most harmful t
 
 ---
 
-### ♻️ Reproducibility
-To ensure reproducibility, the project includes:
-
-- fixed random seeds;
-- a clearly defined environment;
-- saved checkpoints;
-- logged hyperparameters and metrics;
-- deterministic train/validation/test splits.
-
----
-
 ### 💻 Requirements
 The project is implemented in **Python** using **PyTorch**, following the mandatory framework specified by the course.
 
@@ -113,18 +102,14 @@ Example dependencies include:
 
 ---
 
-### 🚀 How to Run
-1. Open the notebook on Google Colab.
-2. Install the required dependencies.
-3. Download or link the RRDataset subset.
-4. Run the training cells.
-5. Run evaluation to obtain the final metrics and plots.
+### 🏃 How to Run
+Open the notebook on Google Colab and run.
 
 ---
 
 ### 🎤 Presentation
 You can click [here](https://LINK_DELLA_PRESENTAZIONE) to read the presentation.
-The project is intended to be presented in a **10-minute oral presentation**, following the course structure:
+The project is intended to be presented in a **10-minute oral presentation**, following the guidelines structure:
 
 - Title
 - Outline
