@@ -10,7 +10,7 @@
 ---
 
 ### 📝 Colab Notebook:  
-[Open the project notebook on Google Colab](https://colab.research.google.com/drive/1IpTRFOgMdlx_t3OaMaVKaViSCQnwWTrx#scrollTo=i6JIlAvFFG-P)
+[Open the project notebook on Google Colab](https://colab.research.google.com/drive/1jaHnxuLccZT6xprUrjlgKOEj8kyHp2DW#scrollTo=VO7AL_1H9ty1)
 
 ---
 
