@@ -1,6 +1,6 @@
 # Joint Detection of AI-Generated Images and Post-Processing Alterations in Real-World Scenarios
 
-## 👥 Authors:
+### 👥 Authors:
 
 | Name | Student ID | Email |
 |------|-----------|-------|
@@ -9,14 +9,12 @@
 
 ---
 
-## 📝 Colab Notebook:  
-
-
+### 📝 Colab Notebook:  
 [Open the project notebook on Google Colab](https://colab.research.google.com/drive/1IpTRFOgMdlx_t3OaMaVKaViSCQnwWTrx#scrollTo=i6JIlAvFFG-P)
 
 ---
 
-## 🎯 Project Goal
+### 🎯 Project Goal
 
 This project addresses the problem of robust AI-generated image detection in realistic conditions, where images are often altered by post-processing operations such as internet transmission or re-digitization.
 The goal is to train a unified multi-task model that simultaneously solves two forensic tasks:
@@ -28,13 +26,13 @@ The main idea is to study whether joint training can improve robustness compared
 
 ---
 
-## 🗂️ Dataset
+### 🗂️ Dataset
 The project uses **RRDataset**, a real-world robustness benchmark containing both real and AI-generated images across three transformation conditions: `original`, `internet-transmitted`, and `re-digitized`.
 Because of hardware constraints, a balanced subset of the dataset can be selected, as allowed by the project guidelines.
 
 ---
 
-## ⚙️ Method
+### ⚙️ Method
 The proposed architecture is based on:
 
 - a **shared backbone** for feature extraction;
@@ -52,7 +50,7 @@ where the weights are used to study the trade-off between the two tasks and to p
 
 ---
 
-## 🧪 Experimental Setup
+### 🧪 Experimental Setup
 The project follows a standard deep learning pipeline in **PyTorch**, as required by the course guidelines.
 
 The code is organized into the following sections:
@@ -69,7 +67,7 @@ Training is performed on a fixed train/validation/test split, with reproducible 
 
 ---
 
-## 📊 Baselines
+### 📊 Baselines
 The project was also compared against two unimodal baselines, one for real/fake detection and one for transformation classification.
 This comparison was carried out to assess whether the multi-task model could improve robustness or, instead, introduce task interference between the two objectives.
 These baselines were not implemented as part of the Colab code, but were trained and evaluated separately. 
@@ -77,7 +75,7 @@ Their results are reported in the presentation through a histogram plot, which i
 
 ---
 
-## 🔍 Results Analysis
+### 🔍 Results Analysis
 The experimental analysis focuses on three aspects:
 
 - overall performance of the unimodal and multi-task models;
@@ -89,7 +87,7 @@ This allows us to understand which post-processing operations are most harmful t
 
 ---
 
-## ♻️ Reproducibility
+### ♻️ Reproducibility
 To ensure reproducibility, the project includes:
 
 - fixed random seeds;
@@ -100,7 +98,7 @@ To ensure reproducibility, the project includes:
 
 ---
 
-## 💻 Requirements
+### 💻 Requirements
 The project is implemented in **Python** using **PyTorch**, following the mandatory framework specified by the course.
 
 Example dependencies include:
@@ -115,7 +113,7 @@ Example dependencies include:
 
 ---
 
-## 🚀 How to Run
+### 🚀 How to Run
 1. Open the notebook on Google Colab.
 2. Install the required dependencies.
 3. Download or link the RRDataset subset.
@@ -124,7 +122,7 @@ Example dependencies include:
 
 ---
 
-## 🎤 Presentation
+### 🎤 Presentation
 You can click [here](https://LINK_DELLA_PRESENTAZIONE) to read the presentation.
 The project is intended to be presented in a **10-minute oral presentation**, following the course structure:
 
@@ -141,5 +139,5 @@ The project is intended to be presented in a **10-minute oral presentation**, fo
 
 ---
 
-## 📝 Notes
+### 📝 Notes
 This project is a hands-on computer vision project, not a survey. The focus is on methodology, reproducibility, and experimental analysis, with a small but meaningful novelty in the training strategy.
