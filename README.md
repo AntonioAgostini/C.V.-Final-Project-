@@ -42,9 +42,9 @@ The proposed architecture is based on:
 
 The model is trained with a **weighted sum of two cross-entropy losses**:
 
-\[
+$$
 L_{total} = \alpha \cdot L_{RF} + \beta \cdot L_{Trans}
-\]
+$$
 
 where the weights are used to study the trade-off between the two tasks and to perform ablation experiments.
 
