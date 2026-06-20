@@ -40,7 +40,9 @@ The proposed architecture is based on:
   - one for the binary real/fake task,
   - one for the transformation classification task.
 
-The model is trained with a **weighted sum of two cross-entropy losses**: $$L_{total} = \alpha \cdot L_{RF} + \beta \cdot L_{Trans}$$
+The model is trained with a **weighted sum of two cross-entropy losses**: 
+
+$$L_{total} = \alpha \cdot L_{RF} + \beta \cdot L_{Trans}$$
 
 where the weights are used to study the trade-off between the two tasks and to perform ablation experiments.
 
