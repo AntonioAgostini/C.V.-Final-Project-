@@ -103,7 +103,7 @@ Example dependencies include:
 ---
 
 ### 🏃 How to Run
-Open the notebook on Google Colab and run.
+Open the notebook on Google Colab, create a personal copy, and run everything on your own copy.
 
 ---
 
