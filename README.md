@@ -76,12 +76,12 @@ Their results are reported in the presentation through a histogram plot, which i
 ---
 
 ### 🔍 Results Analysis
-The experimental analysis focuses on three aspects:
+The experimental analysis focuses on four aspects:
 
 - overall performance of the unimodal and multi-task models;
 - performance breakdown by transformation type;
 - effect of different loss weights in the ablation study.
-- effect of different amount of data for train/val/test and data augmentation.
+- effect of different amount of data and data augmentation for train/val/test.
 
 This allows us to understand which post-processing operations are most harmful to detection and whether real and AI-generated images react differently to the same transformation.
 
