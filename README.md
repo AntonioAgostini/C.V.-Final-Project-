@@ -1,6 +1,7 @@
 # Joint Detection of AI-Generated Images and Post-Processing Alterations in Real-World Scenarios
 
 ## 👥 Authors:
+
 | Name | Student ID | Email |
 |------|-----------|-------|
 | Agostini Antonio | 1995653 | agostini.1995653@studenti.uniroma1.it |
@@ -9,11 +10,13 @@
 ---
 
 ## 📝 Colab Notebook:  
+
 [Open the project notebook on Google Colab](https://colab.research.google.com/drive/1IpTRFOgMdlx_t3OaMaVKaViSCQnwWTrx#scrollTo=i6JIlAvFFG-P)
 
 ---
 
 ## 🎯 Project Goal
+
 This project addresses the problem of robust AI-generated image detection in realistic conditions, where images are often altered by post-processing operations such as internet transmission or re-digitization.
 The goal is to train a unified multi-task model that simultaneously solves two forensic tasks:
 
