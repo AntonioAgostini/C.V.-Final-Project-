@@ -106,7 +106,7 @@ Open the notebook on Google Colab, create a personal copy, and run everything on
 ---
 
 ### 🎤 Presentation
-Click [here](https://LINK_DELLA_PRESENTAZIONE) to read the presentation.
+Click [here](https://github.com/AntonioAgostini/C.V.-Final-Project-/blob/main/CV_Project_Presentation_Agostini_Saolini.pdf) to read the presentation.
 
 The project is intended to be presented in a **10-minute oral presentation**, following the guidelines structure:
 
